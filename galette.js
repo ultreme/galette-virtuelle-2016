@@ -9,6 +9,7 @@ $(document).ready(function () {
 	$("#page").html("");
 	$("#page").hide();
 	$("#page").html($(what).html());
+	$(what).remove();
 	$("#page").fadeIn(500);
 	return true;
     }
@@ -39,11 +40,25 @@ $(document).ready(function () {
 		}
 	    });
 	    switch_page("#loading");
-	    // $("#galette-loading").fadeIn(1000).fadeOut(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000);
-	    $("#galette-loading").fadeIn(1000).fadeOut(1000).fadeIn(1000, function () {
+	    $("#galette-loading").fadeIn(1000).fadeOut(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000).fadeOut(1000).fadeIn(1000, function () {
 		bind_table();
 	    });
 	    return false;
+	});
+    }
+
+    var bind_manger = function () {
+	$("#table-title").html("C'est l'heure de manger!");
+	$("body").append("<div id='crunch'><audio controls autoplay loop><source src='miam.wav' type='audio/wav' /></audio></div>");
+	$("#crunch").hide();
+	$(".part").each(function () {
+	    var time = ((Math.random() * 10) + 5) * 1000;
+	    $(this).fadeOut(time, function () {
+		$(this).remove();
+		if ($(".part").length == 0) {
+		    $("#crunch").remove();
+		}
+	    });
 	});
     }
 
@@ -52,7 +67,12 @@ $(document).ready(function () {
 	$(".for-me").click(function () {
 	    $(this).parent().append('<img width="150" height="150" class="part" src="' + $("#cursor").attr('src') + '" />');
 	    $(this).remove();
-	    switch_cursor();
+	    if ($(".for-me").length > 0) {
+		switch_cursor();
+	    } else {
+		$("#cursor").remove();
+		bind_manger();
+	    }
 	});
     }
 
@@ -69,7 +89,7 @@ $(document).ready(function () {
 	    copain += "<h4>Assiette de <b>" + names[i] + "</b></h4>";
 	    copain += "<img width='200' height='200' src='" + assiettes[Math.floor(Math.random() * assiettes.length)] + "' />";
 	    copain += '<br />';
-	    copain += "<input class='for-me' type='submit' value='Ici!' class='big' />";
+	    copain += "<input class='for-me big' type='submit' value='Ici!' />";
 	    copain += "</div>";
 
 	    copains += copain;
