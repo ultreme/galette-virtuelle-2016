@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>VIRTUAL GALETTE DES ROIS 2016</title>
+    <style type="text/css">
+      @font-face {
+          font-family: 'Oxygen';
+          font-style: normal;
+          font-weight: 400;
+          src: local('Oxygen'), local('Oxygen-Regular'), url(https://themes.googleusercontent.com/static/fonts/oxygen/v2/OFgyER5uFw7Cy-F01PjbVg.woff) format('woff');
+      }
+
+      body {
+          color: #16161D;
+          font-family: 'Oxygen', serif;
+      }
+
+      .copain {
+          border: 2px solid black;
+          margin: 20px;
+          float: left;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="galette.js"></script>
+  </head>
+  <body>
+    <h1>VIRTUAL GALETTE DES ROIS 2016</h1>
+
+    <div id="page"></div>
+
+    <span id="home" class="hidden">
+      <p>
+	Combien de personnes mangent cette galette ?
+      </p>
+      <form name="number-people">
+	<input type="text" value="" id="number-people" />
+	<input type="submit" value="ok" id="ask-number" />
+      </form>
+    </span>
+
+    <span id="names" class="hidden">
+      <h2>{nb} personnes participent à cette galette!</h2>
+      <h3>C'est quoi vos noms?</h3>
+      <form name="names" id="form-names">
+	{inputs}
+	<br />
+	<input type="submit" value="Passer à la galette!" id="go-loading" />
+      </form>
+    </span>
+
+    <span id="loading" class="hidden">
+      <h2>Découpage de la galette en cours…</h2>
+      <img id="galette-loading" src="http://www.2travelandeat.com/images-pays/images-france/galette.des.rois.au.beurre3.jpg" />
+    </span>
+    
+    <span id="table" class="hidden">
+      <h2>Distribution des parts</h2>
+      <hr />
+      {copains}
+    </span>
+
+  </body>
+</html>
