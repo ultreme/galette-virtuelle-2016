@@ -52,7 +52,7 @@ $(document).ready(function () {
 	$("body").append("<div id='crunch'><audio controls autoplay loop><source src='miam.wav' type='audio/wav' /></audio></div>");
 	$("#crunch").hide();
 	$(".part").each(function () {
-	    var time = ((Math.random() * 10) + 5) * 1000;
+	    var time = ((Math.random() * 10) + 10) * 1000;
 	    $(this).fadeOut(time, function () {
 		$(this).remove();
 		if ($(".part").length == 0) {
